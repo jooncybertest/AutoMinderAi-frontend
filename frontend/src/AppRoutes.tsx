@@ -3,6 +3,7 @@ import { HomePage } from "./pages/HomePage";
 import Layout from "./layouts/layout";
 import Feature from "./components/Feature";
 import AboutUs from "./pages/AboutUsPage";
+import ContactPage from "./pages/ContactPage";
 
 export const AppRoutes = () => {
   return (
@@ -17,14 +18,6 @@ export const AppRoutes = () => {
       />
       <Route
         path="/services"
-        element={
-          <Layout>
-            <Feature />
-          </Layout>
-        }
-      />
-      <Route
-        path="/product"
         element={
           <Layout>
             <Feature />
@@ -51,7 +44,7 @@ export const AppRoutes = () => {
         path="/contact"
         element={
           <Layout>
-            <Feature />
+            <ContactPage />
           </Layout>
         }
       />

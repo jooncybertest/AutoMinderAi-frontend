@@ -1,10 +1,19 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import { Dialog, DialogPanel, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { useState } from "react";
+import { Fragment, useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+
+const getUserInitials = (name: string | undefined) => {
+  if (!name) return "NN";
+  const [firstName, lastName] = name.split(" ");
+  return `${firstName[0]}${lastName ? lastName[0] : ""}`.toUpperCase();
+};
 
 export const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const navigation = [
     { name: "Home", link: "/" },
     { name: "Services", link: "/services" },
@@ -12,6 +21,29 @@ export const Navbar = () => {
     { name: "About Us", link: "/about" },
     { name: "Contact", link: "/contact" },
   ];
+  const { loginWithRedirect, logout, isAuthenticated, user } =
+    useAuth0();
+
+  const toggleDropdown = () => {
+    setDropdownVisible(!dropdownVisible);
+  };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target as Node)
+    ) {
+      setDropdownVisible(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
 
   return (
     <>
@@ -53,28 +85,68 @@ export const Navbar = () => {
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Link
-            to="/login"
-            className="text-sm font-semibold leading-6 text-gray-900"
-          >
-            Log in <span aria-hidden="true">&rarr;</span>
-          </Link>
+          {isAuthenticated ? (
+            <div className="flex items-center space-x-4">
+              <div className="relative" ref={dropdownRef}>
+                <div
+                  className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-lg font-semibold text-gray-800 cursor-pointer"
+                  onClick={toggleDropdown}
+                >
+                  {getUserInitials(user?.name)}
+                </div>
+                <Transition
+                  as={Fragment}
+                  show={dropdownVisible}
+                  enter="transition ease-out duration-100"
+                  enterFrom="transform opacity-0 scale-95"
+                  enterTo="transform opacity-100 scale-100"
+                  leave="transition ease-in duration-75"
+                  leaveFrom="transform opacity-100 scale-100"
+                  leaveTo="transform opacity-0 scale-95"
+                >
+                  <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg origin-top-right">
+                    <ul className="py-1">
+                      <li className="px-4 py-2 text-gray-800 hover:bg-gray-100 cursor-pointer">
+                        Profile
+                      </li>
+                      <li className="px-4 py-2 text-gray-800 hover:bg-gray-100 cursor-pointer">
+                        Settings
+                      </li>
+                      <li
+                        onClick={() => logout()}
+                        className="px-4 py-2 text-gray-800 hover:bg-gray-100 cursor-pointer"
+                      >
+                        Logout
+                      </li>
+                    </ul>
+                  </div>
+                </Transition>
+              </div>
+            </div>
+          ) : (
+            <span
+              className="text-sm font-semibold leading-6 text-gray-900 hover:text-gray-700 hover:underline cursor-pointer"
+              onClick={() => loginWithRedirect()}
+            >
+              Log in <span aria-hidden="true">&rarr;</span>
+            </span>
+          )}
         </div>
       </nav>
       <header className="absolute inset-x-0 top-0 z-50">
         <Transition
           show={mobileMenuOpen}
-          enter="duration-1000 ease-out"
+          enter="duration-300 ease-out"
           enterFrom="opacity-0"
           enterTo="opacity-100"
-          leave="duration-1000 ease-out"
+          leave="duration-300 ease-out"
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
           <Dialog
             className="lg:hidden"
             open={mobileMenuOpen}
-            onClose={setMobileMenuOpen}
+            onClose={() => setMobileMenuOpen(false)}
           >
             <div className="fixed inset-0 z-50" />
 
@@ -107,12 +179,29 @@ export const Navbar = () => {
                     ))}
                   </div>
                   <div className="py-6">
-                    <a
-                      href="#"
-                      className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                    >
-                      Log in
-                    </a>
+                    {isAuthenticated ? (
+                      <div className="flex flex-col items-center space-y-2">
+                        <div className="relative w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-lg font-semibold text-gray-800">
+                          {getUserInitials(user?.name)}
+                        </div>
+                        <span className="text-sm font-semibold leading-6 text-gray-900">
+                          Welcome {user?.name}!
+                        </span>
+                        <span
+                          className="text-sm font-semibold leading-6 text-gray-900 hover:text-gray-700 hover:underline cursor-pointer"
+                          onClick={() => logout()}
+                        >
+                          Log out <span aria-hidden="true">&rarr;</span>
+                        </span>
+                      </div>
+                    ) : (
+                      <span
+                        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 cursor-pointer"
+                        onClick={() => loginWithRedirect()}
+                      >
+                        Log in <span aria-hidden="true">&rarr;</span>
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>

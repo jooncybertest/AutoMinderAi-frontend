@@ -1,7 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { Dialog, DialogPanel, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -12,14 +12,36 @@ const navigation = [
 ];
 
 const getUserInitials = (name: string | undefined) => {
-  if (!name) return "NN"; // Default initials
+  if (!name) return "NN";
   const [firstName, lastName] = name.split(" ");
   return `${firstName[0]}${lastName ? lastName[0] : ""}`.toUpperCase();
 };
 
 export default function Hero() {
+  const [dropdownVisible, setDropdownVisible] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const toggleDropdown = () => {
+    setDropdownVisible(!dropdownVisible);
+  };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target as Node)
+    ) {
+      setDropdownVisible(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className="relative bg-white">
@@ -60,8 +82,37 @@ export default function Hero() {
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
             {isAuthenticated ? (
               <div className="flex items-center space-x-4">
-                <div className="relative w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-lg font-semibold text-gray-800">
-                  {getUserInitials(user?.name)}
+                <div className="relative" ref={dropdownRef}>
+                  <div
+                    className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-lg font-semibold text-gray-800 cursor-pointer"
+                    onClick={toggleDropdown}
+                  >
+                    {getUserInitials(user?.name)}
+                  </div>
+                  <Transition
+                    as={Fragment}
+                    show={dropdownVisible}
+                    enter="transition ease-out duration-100"
+                    enterFrom="transform opacity-0 scale-95"
+                    enterTo="transform opacity-100 scale-100"
+                    leave="transition ease-in duration-75"
+                    leaveFrom="transform opacity-100 scale-100"
+                    leaveTo="transform opacity-0 scale-95"
+                  >
+                    <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg origin-top-right">
+                      <ul className="py-1">
+                        <li className="px-4 py-2 text-gray-800 hover:bg-gray-100 cursor-pointer">
+                          Profile
+                        </li>
+                        <li className="px-4 py-2 text-gray-800 hover:bg-gray-100 cursor-pointer">
+                          Settings
+                        </li>
+                        <li onClick={() => logout()} className="px-4 py-2 text-gray-800 hover:bg-gray-100 cursor-pointer">
+                          Logout
+                        </li>
+                      </ul>
+                    </div>
+                  </Transition>
                 </div>
               </div>
             ) : (
@@ -76,10 +127,10 @@ export default function Hero() {
         </nav>
         <Transition
           show={mobileMenuOpen}
-          enter="duration-1000 ease-out"
+          enter="duration-300 ease-out"
           enterFrom="opacity-0"
           enterTo="opacity-100"
-          leave="duration-1000 ease-out"
+          leave="duration-300 ease-out"
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
@@ -95,7 +146,7 @@ export default function Hero() {
                   <span className="sr-only">Your Company</span>
                   <img
                     className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                    src="/companyLogo1.png"
                     alt=""
                   />
                 </a>
@@ -123,12 +174,15 @@ export default function Hero() {
                   </div>
                   <div className="py-6">
                     {isAuthenticated ? (
-                      <div className="flex items-center space-x-4">
+                      <div className="flex flex-col items-center space-y-2">
                         <div className="relative w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-lg font-semibold text-gray-800">
-                          Welcome {user?.name}!
+                          {getUserInitials(user?.name)}
                         </div>
+                        <span className="text-sm font-semibold leading-6 text-gray-900">
+                          Welcome {user?.name}!
+                        </span>
                         <span
-                          className="text-sm font-semibold leading-6 text-gray-900"
+                          className="text-sm font-semibold leading-6 text-gray-900 hover:text-gray-700 hover:underline cursor-pointer"
                           onClick={() => logout()}
                         >
                           Log out <span aria-hidden="true">&rarr;</span>

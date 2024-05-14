@@ -17,7 +17,7 @@ export const Navbar = () => {
   const navigation = [
     { name: "Home", link: "/" },
     { name: "Services", link: "/services" },
-    { name: "Maintenance History", link: "/maintenance-history" },
+    { name: "Get Your Car Info", link: "/maintenance-history" },
     { name: "About Us", link: "/about" },
     { name: "Contact", link: "/contact" },
   ];

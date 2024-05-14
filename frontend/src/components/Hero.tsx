@@ -1,3 +1,4 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import { Dialog, DialogPanel, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
@@ -10,8 +11,15 @@ const navigation = [
   { name: "Contact", href: "/contact" },
 ];
 
+const getUserInitials = (name: string | undefined) => {
+  if (!name) return "NN"; // Default initials
+  const [firstName, lastName] = name.split(" ");
+  return `${firstName[0]}${lastName ? lastName[0] : ""}`.toUpperCase();
+};
+
 export default function Hero() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
 
   return (
     <div className="relative bg-white">
@@ -50,12 +58,20 @@ export default function Hero() {
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a
-              href="#"
-              className="text-sm font-semibold leading-6 text-gray-900"
-            >
-              Log in <span aria-hidden="true">&rarr;</span>
-            </a>
+            {isAuthenticated ? (
+              <div className="flex items-center space-x-4">
+                <div className="relative w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-lg font-semibold text-gray-800">
+                  {getUserInitials(user?.name)}
+                </div>
+              </div>
+            ) : (
+              <span
+                className="text-sm font-semibold leading-6 text-gray-900 hover:text-gray-700 hover:underline cursor-pointer"
+                onClick={() => loginWithRedirect()}
+              >
+                Log in <span aria-hidden="true">&rarr;</span>
+              </span>
+            )}
           </div>
         </nav>
         <Transition
@@ -106,12 +122,26 @@ export default function Hero() {
                     ))}
                   </div>
                   <div className="py-6">
-                    <a
-                      href="#"
-                      className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                    >
-                      Log in
-                    </a>
+                    {isAuthenticated ? (
+                      <div className="flex items-center space-x-4">
+                        <div className="relative w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-lg font-semibold text-gray-800">
+                          Welcome {user?.name}!
+                        </div>
+                        <span
+                          className="text-sm font-semibold leading-6 text-gray-900"
+                          onClick={() => logout()}
+                        >
+                          Log out <span aria-hidden="true">&rarr;</span>
+                        </span>
+                      </div>
+                    ) : (
+                      <span
+                        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 cursor-pointer"
+                        onClick={() => loginWithRedirect()}
+                      >
+                        Log in <span aria-hidden="true">&rarr;</span>
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>

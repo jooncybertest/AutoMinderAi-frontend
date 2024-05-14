@@ -6,6 +6,8 @@ import AboutUs from "./pages/AboutUsPage";
 import ContactPage from "./pages/ContactPage";
 import Footer from "./components/Footer";
 import PageNotFound from "./pages/PageNotFound";
+import UnAuthorizePage from "./pages/UnAuthorizePage";
+import AuthCallbackPage from "./pages/AuthCallbackPage";
 
 export const AppRoutes = () => {
   return (
@@ -19,6 +21,7 @@ export const AppRoutes = () => {
           </>
         }
       />
+      <Route path="/auth-callback" element={<AuthCallbackPage />} />
       <Route
         path="/services"
         element={
@@ -51,6 +54,7 @@ export const AppRoutes = () => {
           </Layout>
         }
       />
+      <Route path="/unauthorized" element={<UnAuthorizePage />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );

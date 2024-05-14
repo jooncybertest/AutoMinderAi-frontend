@@ -1,4 +1,4 @@
-import  Footer  from "../components/Footer";
+import Footer from "../components/Footer";
 import { Navbar } from "../components/NavBar";
 
 type Props = {
@@ -9,13 +9,10 @@ const Layout = ({ children }: Props) => {
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
-      <main className="flex-grow">
-        {children}
-      </main>
+      <main className="flex-grow">{children}</main>
       <Footer />
     </div>
   );
 };
 
 export default Layout;
-

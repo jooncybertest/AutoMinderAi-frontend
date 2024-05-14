@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import { Switch } from "@headlessui/react";
+import { Switch, SwitchGroup, SwitchLabel } from "@headlessui/react";
 
 function classNames(...classes: (string | false | null | undefined)[]) {
   return classes.filter(Boolean).join(" ");
@@ -160,7 +160,7 @@ export default function Example() {
               />
             </div>
           </div>
-          <Switch.Group as="div" className="flex gap-x-4 sm:col-span-2">
+          <SwitchGroup as="div" className="flex gap-x-4 sm:col-span-2">
             <div className="flex h-6 items-center">
               <Switch
                 checked={agreed}
@@ -180,14 +180,14 @@ export default function Example() {
                 />
               </Switch>
             </div>
-            <Switch.Label className="text-sm leading-6 text-gray-600">
+            <SwitchLabel className="text-sm leading-6 text-gray-600">
               By selecting this, you agree to our{" "}
               <a href="#" className="font-semibold text-indigo-600">
                 privacy&nbsp;policy
               </a>
               .
-            </Switch.Label>
-          </Switch.Group>
+            </SwitchLabel>
+          </SwitchGroup>
         </div>
         <div className="mt-10">
           <button

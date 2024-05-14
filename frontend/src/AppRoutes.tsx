@@ -8,14 +8,7 @@ import ContactPage from "./pages/ContactPage";
 export const AppRoutes = () => {
   return (
     <Routes>
-      <Route
-        path="/"
-        element={
-          <Layout>
-            <HomePage />
-          </Layout>
-        }
-      />
+      <Route path="/" element={<HomePage />} />
       <Route
         path="/services"
         element={

@@ -1,44 +1,52 @@
-import { ArrowPathIcon, CloudArrowUpIcon, FingerPrintIcon, LockClosedIcon } from '@heroicons/react/24/outline'
+import {
+  ArrowPathIcon,
+  CalendarIcon,
+  CheckCircleIcon,
+  WrenchIcon,
+} from "@heroicons/react/24/outline";
 
 const features = [
   {
-    name: 'Push to deploy',
+    name: "AI Maintenance Predictions",
     description:
-      'Morbi viverra dui mi arcu sed. Tellus semper adipiscing suspendisse semper morbi. Odio urna massa nunc massa.',
-    icon: CloudArrowUpIcon,
+      "Receive accurate predictions about your car’s maintenance needs using advanced AI algorithms, ensuring your car stays in top shape.",
+    icon: CheckCircleIcon,
   },
   {
-    name: 'SSL certificates',
+    name: "Automated Service Reminders",
     description:
-      'Sit quis amet rutrum tellus ullamcorper ultricies libero dolor eget. Sem sodales gravida quam turpis enim lacus amet.',
-    icon: LockClosedIcon,
+      "Never miss a service appointment with automated reminders based on your car’s maintenance schedule and usage patterns.",
+    icon: CalendarIcon,
   },
   {
-    name: 'Simple queues',
+    name: "Detailed Maintenance History",
     description:
-      'Quisque est vel vulputate cursus. Risus proin diam nunc commodo. Lobortis auctor congue commodo diam neque.',
+      "Keep track of all your car’s past services in one place, providing you with a comprehensive maintenance history.",
     icon: ArrowPathIcon,
   },
   {
-    name: 'Advanced security',
+    name: "Trusted Repair Shop Locator",
     description:
-      'Arcu egestas dolor vel iaculis in ipsum mauris. Tincidunt mattis aliquet hac quis. Id hac maecenas ac donec pharetra eget.',
-    icon: FingerPrintIcon,
+      "Find and connect with trusted repair shops near you, ensuring quality service and convenience for all your car maintenance needs.",
+    icon: WrenchIcon,
   },
-]
+];
 
 export default function Feature() {
   return (
     <div className="bg-white py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:text-center">
-          <h2 className="text-base font-semibold leading-7 text-indigo-600">Deploy faster</h2>
+          <h2 className="text-base font-semibold leading-7 text-indigo-600">
+            Stay Ahead with AutoMinder
+          </h2>
           <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Everything you need to deploy your app
+            Essential Features for Car Maintenance
           </p>
           <p className="mt-6 text-lg leading-8 text-gray-600">
-            Quis tellus eget adipiscing convallis sit sit eget aliquet quis. Suspendisse eget egestas a elementum
-            pulvinar et feugiat blandit at. In mi viverra elit nunc.
+            AutoMinder provides everything you need to ensure your car is always
+            in optimal condition. From AI-driven maintenance predictions to
+            finding trusted repair shops, we’ve got you covered.
           </p>
         </div>
         <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
@@ -47,16 +55,21 @@ export default function Feature() {
               <div key={feature.name} className="relative pl-16">
                 <dt className="text-base font-semibold leading-7 text-gray-900">
                   <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
-                    <feature.icon className="h-6 w-6 text-white" aria-hidden="true" />
+                    <feature.icon
+                      className="h-6 w-6 text-white"
+                      aria-hidden="true"
+                    />
                   </div>
                   {feature.name}
                 </dt>
-                <dd className="mt-2 text-base leading-7 text-gray-600">{feature.description}</dd>
+                <dd className="mt-2 text-base leading-7 text-gray-600">
+                  {feature.description}
+                </dd>
               </div>
             ))}
           </dl>
         </div>
       </div>
     </div>
-  )
+  );
 }

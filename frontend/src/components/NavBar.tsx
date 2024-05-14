@@ -6,10 +6,11 @@ import { Link } from "react-router-dom";
 export const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigation = [
-    { name: "Product", link: "/product" },
-    { name: "Features", link: "/feature" },
-    { name: "Marketplace", link: "/marketplace" },
-    { name: "Company", link: "/company" },
+    { name: "Home", link: "/" },
+    { name: "Services", link: "/services" },
+    { name: "Maintenance History", link: "/maintenance-history" },
+    { name: "About Us", link: "/about" },
+    { name: "Contact", link: "/contact" },
   ];
 
   return (
@@ -19,13 +20,15 @@ export const Navbar = () => {
         aria-label="Global"
       >
         <div className="flex lg:flex-1">
-          <Link to="/" className="-m-1.5 p-1.5">
-            <span className="sr-only">Your Company</span>
+          <Link to="/" className="-m-1.5 p-1.5 flex gap-3">
             <img
               className="h-8 w-auto"
               src="/companyLogo1.png"
               alt="My Company Logo"
             />
+            <span className="text-lg font-semibold leading-6 text-black-900 py-1">
+              AutoMinderAI
+            </span>
           </Link>
         </div>
         <div className="flex lg:hidden">
@@ -39,30 +42,15 @@ export const Navbar = () => {
           </button>
         </div>
         <div className="hidden lg:flex lg:gap-x-12">
-          <Link
-            className="text-sm font-semibold leading-6 text-gray-900"
-            to="/product"
-          >
-            Product
-          </Link>
-          <Link
-            className="text-sm font-semibold leading-6 text-gray-900"
-            to="/feature"
-          >
-            Features
-          </Link>
-          <Link
-            className="text-sm font-semibold leading-6 text-gray-900"
-            to="/marketplace"
-          >
-            Marketplace
-          </Link>
-          <Link
-            className="text-sm font-semibold leading-6 text-gray-900"
-            to="/company"
-          >
-            Company
-          </Link>
+          {navigation.map((item) => (
+            <Link
+              key={item.name}
+              className="text-sm font-semibold leading-6 text-gray-900"
+              to={item.link}
+            >
+              {item.name}
+            </Link>
+          ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <Link
@@ -90,9 +78,7 @@ export const Navbar = () => {
           >
             <div className="fixed inset-0 z-50" />
 
-            <DialogPanel
-              className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
-            >
+            <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
               <div className="flex items-center justify-between">
                 <a href="#" className="-m-1.5 p-1.5">
                   <span className="sr-only">Your Company</span>

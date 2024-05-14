@@ -15,7 +15,7 @@ export const AppRoutes = () => {
         }
       />
       <Route
-        path="/feature"
+        path="/services"
         element={
           <Layout>
             <Feature />
@@ -31,7 +31,7 @@ export const AppRoutes = () => {
         }
       />
       <Route
-        path="/marketplace"
+        path="/maintenance-history"
         element={
           <Layout>
             <Feature />
@@ -39,7 +39,15 @@ export const AppRoutes = () => {
         }
       />
       <Route
-        path="/company"
+        path="/about"
+        element={
+          <Layout>
+            <Feature />
+          </Layout>
+        }
+      />
+      <Route
+        path="/contact"
         element={
           <Layout>
             <Feature />

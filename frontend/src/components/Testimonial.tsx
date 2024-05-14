@@ -24,7 +24,7 @@ export default function Testimonial() {
               alt="Testimonial Author"
             />
             <div className="mt-4 flex items-center justify-center space-x-3 text-base">
-              <div className="font-semibold text-gray-900">John Doe</div>
+              <div className="font-semibold text-gray-900">Jordyn Rivers</div>
               <svg
                 viewBox="0 0 2 2"
                 width={3}

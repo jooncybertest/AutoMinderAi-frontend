@@ -3,6 +3,10 @@ import {
   CalendarIcon,
   CheckCircleIcon,
   WrenchIcon,
+  LightBulbIcon,
+  ShieldCheckIcon,
+  DocumentTextIcon,
+  UserGroupIcon,
 } from "@heroicons/react/24/outline";
 
 const features = [
@@ -30,6 +34,30 @@ const features = [
       "Find and connect with trusted repair shops near you, ensuring quality service and convenience for all your car maintenance needs.",
     icon: WrenchIcon,
   },
+  {
+    name: "Fuel Efficiency Insights",
+    description:
+      "Get insights into your car’s fuel efficiency and receive tips on how to improve it, saving you money on gas.",
+    icon: LightBulbIcon,
+  },
+  {
+    name: "Enhanced Security",
+    description:
+      "Benefit from enhanced security features that help protect your car from theft and unauthorized access.",
+    icon: ShieldCheckIcon,
+  },
+  {
+    name: "Service Documentation",
+    description:
+      "Easily access and store all your car’s service documentation, making it simple to reference and share when needed.",
+    icon: DocumentTextIcon,
+  },
+  {
+    name: "Community Support",
+    description:
+      "Join a community of car owners and enthusiasts to share tips, get advice, and support each other in maintaining your vehicles.",
+    icon: UserGroupIcon,
+  },
 ];
 
 export default function Feature() {
@@ -50,7 +78,7 @@ export default function Feature() {
           </p>
         </div>
         <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
-          <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
+          <dl className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-2 lg:gap-y-16">
             {features.map((feature) => (
               <div key={feature.name} className="relative pl-16">
                 <dt className="text-base font-semibold leading-7 text-gray-900">

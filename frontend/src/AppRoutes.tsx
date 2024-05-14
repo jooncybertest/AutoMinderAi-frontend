@@ -2,6 +2,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { HomePage } from "./pages/HomePage";
 import Layout from "./layouts/layout";
 import Feature from "./components/Feature";
+import AboutUs from "./pages/AboutUsPage";
 
 export const AppRoutes = () => {
   return (
@@ -42,7 +43,7 @@ export const AppRoutes = () => {
         path="/about"
         element={
           <Layout>
-            <Feature />
+            <AboutUs />
           </Layout>
         }
       />

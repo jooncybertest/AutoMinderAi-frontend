@@ -4,11 +4,21 @@ import Layout from "./layouts/layout";
 import Feature from "./components/Feature";
 import AboutUs from "./pages/AboutUsPage";
 import ContactPage from "./pages/ContactPage";
+import Footer from "./components/Footer";
+import PageNotFound from "./pages/PageNotFound";
 
 export const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
+      <Route
+        path="/"
+        element={
+          <>
+            <HomePage />
+            <Footer />
+          </>
+        }
+      />
       <Route
         path="/services"
         element={
@@ -41,7 +51,7 @@ export const AppRoutes = () => {
           </Layout>
         }
       />
-      <Route path="*" element={<Navigate to="/" />} />
+      <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
 };

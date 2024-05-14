@@ -45,7 +45,6 @@ type CreateUserRequest = {
 };
 
 
-
 export const useCreateMyUser = () => {
   const { getAccessTokenSilently } = useAuth0();
 

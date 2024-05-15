@@ -2,28 +2,7 @@ import React, { useState } from "react";
 import { useSpring, animated } from "@react-spring/web";
 import { CreateMaintenancePrediction } from "../../types";
 import { useCreateMaintenancePrediction } from "../api/AiPredictorApi";
-
-const steps = [
-  { label: "Vehicle Model", name: "Vehicle_Model", type: "text" },
-  { label: "Mileage", name: "Mileage", type: "number" },
-  { label: "Maintenance History", name: "Maintenance_History", type: "text" },
-  { label: "Reported Issues", name: "Reported_Issues", type: "number" },
-  { label: "Vehicle Age", name: "Vehicle_Age", type: "number" },
-  { label: "Fuel Type", name: "Fuel_Type", type: "text" },
-  { label: "Transmission Type", name: "Transmission_Type", type: "text" },
-  { label: "Engine Size", name: "Engine_Size", type: "number" },
-  { label: "Odometer Reading", name: "Odometer_Reading", type: "number" },
-  { label: "Last Service Date", name: "Last_Service_Date", type: "date" },
-  { label: "Warranty Expiry Date", name: "Warranty_Expiry_Date", type: "date" },
-  { label: "Owner Type", name: "Owner_Type", type: "text" },
-  { label: "Insurance Premium", name: "Insurance_Premium", type: "number" },
-  { label: "Service History", name: "Service_History", type: "number" },
-  { label: "Accident History", name: "Accident_History", type: "number" },
-  { label: "Fuel Efficiency", name: "Fuel_Efficiency", type: "number" },
-  { label: "Tire Condition", name: "Tire_Condition", type: "text" },
-  { label: "Brake Condition", name: "Brake_Condition", type: "text" },
-  { label: "Battery Status", name: "Battery_Status", type: "text" },
-];
+import { steps } from "../AIQuestionareSteps/steps";
 
 export const AiPredictForm = () => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -52,11 +31,21 @@ export const AiPredictForm = () => {
   const { mutate, isLoading, isError, isSuccess } =
     useCreateMaintenancePrediction();
 
-  const handleNext = () =>
-    setCurrentStep((prev) => Math.min(prev + 1, steps.length - 1));
-  const handleBack = () => setCurrentStep((prev) => Math.max(prev - 1, 0));
+  const handleNext = () => {
+    if (currentStep < steps.length - 1) {
+      setCurrentStep((prev) => prev + 1);
+    }
+  };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleBack = () => {
+    if (currentStep > 0) {
+      setCurrentStep((prev) => prev - 1);
+    }
+  };
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value, type } = e.target;
     const parsedValue = type === "number" ? parseFloat(value) : value;
     setFormData({ ...formData, [name]: parsedValue });
@@ -76,10 +65,10 @@ export const AiPredictForm = () => {
       Fuel_Efficiency: Number(formData.Fuel_Efficiency),
     };
 
-    console.log("Form data being sent:", payload); 
+    console.log("Form data being sent:", payload);
     mutate([payload], {
       onSuccess: (data) => {
-        console.log("Prediction response from server:", data); 
+        console.log("Prediction response from server:", data);
         setPrediction(data.prediction);
       },
     });
@@ -87,25 +76,54 @@ export const AiPredictForm = () => {
 
   const props = useSpring({ to: { opacity: 1 }, from: { opacity: 0 } });
 
+  const isNextDisabled = () => {
+    const currentValue =
+      formData[steps[currentStep].name as keyof CreateMaintenancePrediction];
+    if (!currentValue) return true;
+    if (steps[currentStep].type === "number" && isNaN(Number(currentValue)))
+      return true;
+    return false;
+  };
+
   return (
-    <div className="max-w-md mx-auto mt-10">
+    <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
       {prediction.length === 0 ? (
         <>
           <animated.div style={props}>
             <h2 className="text-2xl font-bold mb-4">
               {steps[currentStep].label}
             </h2>
-            <input
-              type={steps[currentStep].type}
-              name={steps[currentStep].name}
-              value={
-                formData[
-                  steps[currentStep].name as keyof CreateMaintenancePrediction
-                ] || ""
-              }
-              onChange={handleChange}
-              className="block w-full border border-gray-300 rounded-md p-2 mb-4"
-            />
+            {steps[currentStep].type === "select" ? (
+              <select
+                name={steps[currentStep].name}
+                value={
+                  formData[
+                    steps[currentStep].name as keyof CreateMaintenancePrediction
+                  ] || ""
+                }
+                onChange={handleChange}
+                className="block w-full border border-gray-300 rounded-md p-2 mb-4"
+              >
+                <option value="">Select an option</option>
+                {steps[currentStep].options!.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+            ) : (
+              <input
+                type={steps[currentStep].type}
+                name={steps[currentStep].name}
+                value={
+                  formData[
+                    steps[currentStep].name as keyof CreateMaintenancePrediction
+                  ] || ""
+                }
+                onChange={handleChange}
+                className="block w-full border border-gray-300 rounded-md p-2 mb-4"
+              />
+            )}
           </animated.div>
 
           <div className="flex justify-between">
@@ -119,7 +137,10 @@ export const AiPredictForm = () => {
             {currentStep < steps.length - 1 ? (
               <button
                 onClick={handleNext}
-                className="bg-blue-500 text-white px-4 py-2 rounded-md"
+                className={`bg-blue-500 text-white px-4 py-2 rounded-md ${
+                  isNextDisabled() ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+                disabled={isNextDisabled()}
               >
                 Next
               </button>
@@ -137,13 +158,13 @@ export const AiPredictForm = () => {
           {isError && (
             <p className="text-red-500 mt-4">Error submitting the form.</p>
           )}
-          {isSuccess && (
-            <p className="text-green-500 mt-4">Form submitted successfully!</p>
-          )}
         </>
       ) : (
-        <div className="mt-10">
+        <div className="mt-10 p-6 bg-gray-100 rounded-lg shadow-md">
           <h2 className="text-2xl font-bold mb-4">Prediction Results</h2>
+          <p className="text-lg mb-4">
+            The results below are generated by our AI:
+          </p>
           <ul className="list-disc pl-5">
             {prediction.map((result, index) => (
               <li

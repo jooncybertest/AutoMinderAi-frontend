@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSpring, animated } from "@react-spring/web";
 import { CreateMaintenancePrediction } from "../../types";
 import { useCreateMaintenancePrediction } from "../api/AiPredictorApi";
-import { steps } from "../AIQuestionareSteps/steps";
+import { steps } from "../AIQuestionaireSteps/steps";
 
 export const AiPredictForm = () => {
   const [currentStep, setCurrentStep] = useState(0);

@@ -1,8 +1,14 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { Dialog, DialogPanel, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { Fragment, useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+} from "@nextui-org/react";
 
 const getUserInitials = (name: string | undefined) => {
   if (!name) return "NN";
@@ -17,12 +23,11 @@ export const Navbar = () => {
   const navigation = [
     { name: "Home", link: "/" },
     { name: "Services", link: "/services" },
-    { name: "Get Your Car Info", link: "/maintenance-history" },
+    { name: "Get Your Car Info", link: "/get-your-car-info" },
     { name: "About Us", link: "/about" },
     { name: "Contact", link: "/contact" },
   ];
-  const { loginWithRedirect, logout, isAuthenticated, user } =
-    useAuth0();
+  const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
 
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
@@ -43,7 +48,6 @@ export const Navbar = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-
 
   return (
     <>
@@ -86,43 +90,20 @@ export const Navbar = () => {
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           {isAuthenticated ? (
-            <div className="flex items-center space-x-4">
-              <div className="relative" ref={dropdownRef}>
-                <div
-                  className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-lg font-semibold text-gray-800 cursor-pointer"
-                  onClick={toggleDropdown}
-                >
+            <Dropdown>
+              <DropdownTrigger>
+                <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-lg font-semibold text-gray-800 cursor-pointer">
                   {getUserInitials(user?.name)}
                 </div>
-                <Transition
-                  as={Fragment}
-                  show={dropdownVisible}
-                  enter="transition ease-out duration-100"
-                  enterFrom="transform opacity-0 scale-95"
-                  enterTo="transform opacity-100 scale-100"
-                  leave="transition ease-in duration-75"
-                  leaveFrom="transform opacity-100 scale-100"
-                  leaveTo="transform opacity-0 scale-95"
-                >
-                  <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg origin-top-right">
-                    <ul className="py-1">
-                      <li className="px-4 py-2 text-gray-800 hover:bg-gray-100 cursor-pointer">
-                        Profile
-                      </li>
-                      <li className="px-4 py-2 text-gray-800 hover:bg-gray-100 cursor-pointer">
-                        Settings
-                      </li>
-                      <li
-                        onClick={() => logout()}
-                        className="px-4 py-2 text-gray-800 hover:bg-gray-100 cursor-pointer"
-                      >
-                        Logout
-                      </li>
-                    </ul>
-                  </div>
-                </Transition>
-              </div>
-            </div>
+              </DropdownTrigger>
+              <DropdownMenu aria-label="User Actions">
+                <DropdownItem key="profile">Profile</DropdownItem>
+                <DropdownItem key="settings">Settings</DropdownItem>
+                <DropdownItem key="logout" onClick={() => logout()}>
+                  Logout
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
           ) : (
             <span
               className="text-sm font-semibold leading-6 text-gray-900 hover:text-gray-700 hover:underline cursor-pointer"

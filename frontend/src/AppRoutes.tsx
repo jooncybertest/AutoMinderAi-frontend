@@ -8,7 +8,7 @@ import Footer from "./components/Footer";
 import PageNotFound from "./pages/PageNotFound";
 import UnAuthorizePage from "./pages/UnAuthorizePage";
 import AuthCallbackPage from "./pages/AuthCallbackPage";
-import { MaintenanceHistoryPage } from "./pages/MaintenanceHistoryPage";
+import { GetYourCarInfoPage } from "./pages/GetYourCarInfoPage";
 
 export const AppRoutes = () => {
   return (
@@ -32,10 +32,10 @@ export const AppRoutes = () => {
         }
       />
       <Route
-        path="/maintenance-history"
+        path="/get-your-car-info"
         element={
           <Layout>
-            <MaintenanceHistoryPage />
+            <GetYourCarInfoPage />
           </Layout>
         }
       />

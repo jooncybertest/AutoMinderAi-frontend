@@ -89,7 +89,10 @@ export default function Hero() {
             )}
           </div>
         </nav>
-        <MobileNav />
+        <MobileNav
+          mobileMenuOpen={mobileMenuOpen}
+          setMobileMenuOpen={setMobileMenuOpen}
+        />
       </header>
 
       <div className="relative isolate px-6 pt-14 lg:px-8">

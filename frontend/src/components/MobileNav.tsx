@@ -1,11 +1,14 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { Dialog, DialogPanel, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { useState } from "react";
 import { getUserInitials } from "./Hero";
 
-export const MobileNav = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+type Props = {
+  mobileMenuOpen: boolean;
+  setMobileMenuOpen: (value: boolean) => void;
+};
+
+export const MobileNav = ({ mobileMenuOpen, setMobileMenuOpen }: Props) => {
   const navigation = [
     { name: "Home", href: "/" },
     { name: "Services", href: "/services" },

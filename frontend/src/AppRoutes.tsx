@@ -9,6 +9,7 @@ import PageNotFound from "./pages/PageNotFound";
 import UnAuthorizePage from "./pages/UnAuthorizePage";
 import AuthCallbackPage from "./pages/AuthCallbackPage";
 import { GetYourCarInfoPage } from "./pages/GetYourCarInfoPage";
+import ProtectedRoute from "./auth/ProtectedRoute";
 
 export const AppRoutes = () => {
   return (
@@ -47,14 +48,16 @@ export const AppRoutes = () => {
           </Layout>
         }
       />
-      <Route
-        path="/contact"
-        element={
-          <Layout>
-            <ContactPage />
-          </Layout>
-        }
-      />
+      <Route element={<ProtectedRoute />}>
+        <Route
+          path="/contact"
+          element={
+            <Layout>
+              <ContactPage />
+            </Layout>
+          }
+        />
+      </Route>
       <Route path="/unauthorized" element={<UnAuthorizePage />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>

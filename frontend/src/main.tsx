@@ -5,7 +5,8 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { AppRoutes } from "./AppRoutes";
 import { QueryClient, QueryClientProvider } from "react-query";
 import Auth0ProviderWithNavigate from "./auth/Auth0ProviderWithNavigate";
-import { Toaster } from "sonner";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -13,7 +14,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <QueryClientProvider client={new QueryClient()}>
         <Auth0ProviderWithNavigate>
           <AppRoutes />
-          <Toaster visibleToasts={1} position="top-right" richColors />
+          <ToastContainer />
         </Auth0ProviderWithNavigate>
       </QueryClientProvider>
     </Router>

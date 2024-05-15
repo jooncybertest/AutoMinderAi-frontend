@@ -1,4 +1,7 @@
+import { useAuth0 } from "@auth0/auth0-react";
+
 export default function UnAuthorizePage() {
+  const { loginWithRedirect } = useAuth0();
   return (
     <>
       <main className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
@@ -17,9 +20,12 @@ export default function UnAuthorizePage() {
             >
               Go back home
             </a>
-            <a href="/contact" className="text-sm font-semibold text-gray-900">
-              Contact support <span aria-hidden="true">&rarr;</span>
-            </a>
+            <span
+              className="text-sm font-semibold leading-6 text-gray-900 hover:text-gray-700 hover:underline cursor-pointer"
+              onClick={() => loginWithRedirect()}
+            >
+              Log in <span aria-hidden="true">&rarr;</span>
+            </span>
           </div>
         </div>
       </main>

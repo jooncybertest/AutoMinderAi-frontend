@@ -11,8 +11,11 @@ import AuthCallbackPage from "./pages/AuthCallbackPage";
 import { GetYourCarInfoPage } from "./pages/GetYourCarInfoPage";
 import ProtectedRoute from "./auth/ProtectedRoute";
 import { AiPredictPage } from "./pages/AiPredictPage";
+import { Spinner } from "@nextui-org/spinner";
+import { useState } from "react";
 
 export const AppRoutes = () => {
+  const [loading, setLoading] = useState(false);
   return (
     <Routes>
       <Route
@@ -62,7 +65,7 @@ export const AppRoutes = () => {
           path="/ai-predictor"
           element={
             <Layout>
-              <AiPredictPage />
+              {loading ? <Spinner size="lg" /> : <AiPredictPage />}
             </Layout>
           }
         />

@@ -11,11 +11,10 @@ import AuthCallbackPage from "./pages/AuthCallbackPage";
 import { GetYourCarInfoPage } from "./pages/GetYourCarInfoPage";
 import ProtectedRoute from "./auth/ProtectedRoute";
 import { AiPredictPage } from "./pages/AiPredictPage";
-import { Spinner } from "@nextui-org/spinner";
-import { useState } from "react";
+import { AiDescription } from "./components/AiDescription";
+import { AutoshopsNearbyPage } from "./pages/AutoshopsNearbyPage";
 
 export const AppRoutes = () => {
-  const [loading, setLoading] = useState(false);
   return (
     <Routes>
       <Route
@@ -37,10 +36,20 @@ export const AppRoutes = () => {
         }
       />
       <Route
+        path="/autoshops-nearby"
+        element={
+          <Layout>
+            <AutoshopsNearbyPage />
+          </Layout>
+        }
+      />
+      <Route
         path="/get-your-car-info"
         element={
           <Layout>
-            <GetYourCarInfoPage />
+            <>
+              <GetYourCarInfoPage />
+            </>
           </Layout>
         }
       />
@@ -65,7 +74,10 @@ export const AppRoutes = () => {
           path="/ai-predictor"
           element={
             <Layout>
-              {loading ? <Spinner size="lg" /> : <AiPredictPage />}
+              <>
+                <AiDescription />
+                <AiPredictPage />
+              </>
             </Layout>
           }
         />

@@ -9,7 +9,7 @@ const History = () => {
           <div className="md:col-span-1">
             <h4 className="text-xl font-semibold mb-4">Founding Story</h4>
             <p className="text-lg leading-7 text-gray-700">
-              Founded in 2023, AutoMinder started humbly in a small garage where
+              Founded in 2010, AutoMinder started humbly in a small garage where
               a group of passionate car enthusiasts and tech experts gathered
               with a common vision: to revolutionize car maintenance through
               technology. Motivated by the frustration of traditional

@@ -10,6 +10,7 @@ import UnAuthorizePage from "./pages/UnAuthorizePage";
 import AuthCallbackPage from "./pages/AuthCallbackPage";
 import { GetYourCarInfoPage } from "./pages/GetYourCarInfoPage";
 import ProtectedRoute from "./auth/ProtectedRoute";
+import { AiPredictPage } from "./pages/AiPredictPage";
 
 export const AppRoutes = () => {
   return (
@@ -54,6 +55,14 @@ export const AppRoutes = () => {
           element={
             <Layout>
               <ContactPage />
+            </Layout>
+          }
+        />
+        <Route
+          path="/ai-predictor"
+          element={
+            <Layout>
+              <AiPredictPage />
             </Layout>
           }
         />

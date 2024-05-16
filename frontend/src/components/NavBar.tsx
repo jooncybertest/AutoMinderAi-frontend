@@ -18,7 +18,6 @@ const getUserInitials = (name: string | undefined) => {
 
 export const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [dropdownVisible, setDropdownVisible] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const navigation = [
     { name: "Home", link: "/" },
@@ -34,7 +33,7 @@ export const Navbar = () => {
       dropdownRef.current &&
       !dropdownRef.current.contains(event.target as Node)
     ) {
-      setDropdownVisible(false);
+      // Set dropdownVisible to false here if it were used
     }
   };
 

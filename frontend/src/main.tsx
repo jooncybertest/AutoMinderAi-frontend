@@ -5,7 +5,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { AppRoutes } from "./AppRoutes";
 import { QueryClient, QueryClientProvider } from "react-query";
 import Auth0ProviderWithNavigate from "./auth/Auth0ProviderWithNavigate";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

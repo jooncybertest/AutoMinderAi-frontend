@@ -10,9 +10,7 @@ import {
 } from "@nextui-org/react";
 import { MobileNav } from "./MobileNav";
 
-type Props = {
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
-};
+
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -28,13 +26,12 @@ export const getUserInitials = (name: string | undefined) => {
   return `${firstName[0]}${lastName ? lastName[0] : ""}`.toUpperCase();
 };
 
-export default function Hero({ setLoading }: Props) {
+export default function Hero() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
   const [loadingGetStarted, setLoadingGetStarted] = useState(false);
   const handleGetStarted = () => {
     setLoadingGetStarted(true);
-    setLoading(true);
   };
   return (
     <div className="relative bg-white">

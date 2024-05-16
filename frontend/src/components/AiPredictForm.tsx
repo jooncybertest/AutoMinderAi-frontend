@@ -30,7 +30,7 @@ export const AiPredictForm = () => {
     Battery_Status: "",
   });
   const [prediction, setPrediction] = useState<number[]>([]);
-  const { mutate, isLoading, isError, isSuccess } =
+  const { mutate, isLoading, isError } =
     useCreateMaintenancePrediction();
 
   const handleNext = () => {

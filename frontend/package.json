@@ -1,12 +1,11 @@
 {
   "name": "frontend",
-  "private": true,
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "build": "tsc && react-scripts build",
-    "dev": "react-scripts start",
-    "test": "react-scripts test",
+    "build": "tsc && vite build",
+    "dev": "vite",
+    "test": "vitest",
     "eject": "react-scripts eject"
   },
   "dependencies": {

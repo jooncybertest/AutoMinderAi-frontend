@@ -34,8 +34,8 @@ export const GetYourCarInfoPage: React.FC = () => {
         </h1>
         <p className="text-lg mb-6 text-center text-gray-600">
           Enter your Vehicle Identification Number (VIN) and the model year to
-          retrieve detailed information about your car. Our AI will analyze the
-          data to provide insights and recommendations.
+          retrieve detailed information about your car. You can use this
+          information for our AI maintenance service.
         </p>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="mb-4">

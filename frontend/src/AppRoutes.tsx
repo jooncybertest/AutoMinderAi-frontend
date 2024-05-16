@@ -12,7 +12,7 @@ import { GetYourCarInfoPage } from "./pages/GetYourCarInfoPage";
 import ProtectedRoute from "./auth/ProtectedRoute";
 import { AiPredictPage } from "./pages/AiPredictPage";
 import { AiDescription } from "./components/AiDescription";
-import  AutoshopsNearbyPage  from "./pages/AutoshopsNearbyPage";
+import AutoshopsNearbyPage from "./pages/AutoshopsNearbyPage";
 
 export const AppRoutes = () => {
   return (
@@ -47,9 +47,7 @@ export const AppRoutes = () => {
         path="/get-your-car-info"
         element={
           <Layout>
-            <>
-              <GetYourCarInfoPage />
-            </>
+            <GetYourCarInfoPage />
           </Layout>
         }
       />

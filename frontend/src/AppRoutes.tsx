@@ -13,6 +13,8 @@ import ProtectedRoute from "./auth/ProtectedRoute";
 import { AiPredictPage } from "./pages/AiPredictPage";
 import { AiDescription } from "./components/AiDescription";
 import AutoshopsNearbyPage from "./pages/AutoshopsNearbyPage";
+import SuccessPage from "./pages/SuccessPaymentPage";
+import CancelPage from "./pages/CancelPaymentPage";
 
 export const AppRoutes = () => {
   return (
@@ -59,6 +61,17 @@ export const AppRoutes = () => {
           </Layout>
         }
       />
+      <Route
+        path="/ai-predictor"
+        element={
+          <Layout>
+            <>
+              <AiDescription />
+              <AiPredictPage />
+            </>
+          </Layout>
+        }
+      />
       <Route element={<ProtectedRoute />}>
         <Route
           path="/contact"
@@ -68,20 +81,11 @@ export const AppRoutes = () => {
             </Layout>
           }
         />
-        <Route
-          path="/ai-predictor"
-          element={
-            <Layout>
-              <>
-                <AiDescription />
-                <AiPredictPage />
-              </>
-            </Layout>
-          }
-        />
       </Route>
       <Route path="/unauthorized" element={<UnAuthorizePage />} />
       <Route path="*" element={<PageNotFound />} />
+      <Route path="/success" element={<SuccessPage />} />
+      <Route path="/cancel" element={<CancelPage />} />
     </Routes>
   );
 };

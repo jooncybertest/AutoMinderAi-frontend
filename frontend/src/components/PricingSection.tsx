@@ -1,4 +1,5 @@
 import { CheckIcon } from "@heroicons/react/20/solid";
+import { handleStripeCheckout } from "../api/StripeApi";
 
 const includedFeatures = [
   "AI-powered maintenance predictions",
@@ -64,12 +65,12 @@ export default function PricingSection() {
                     USD
                   </span>
                 </p>
-                <a
-                  href="#"
+                <button
+                  onClick={handleStripeCheckout}
                   className="mt-10 block w-full rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   Get Access
-                </a>
+                </button>
                 <p className="mt-6 text-xs leading-5 text-gray-600">
                   Invoices and receipts available for easy company reimbursement
                 </p>

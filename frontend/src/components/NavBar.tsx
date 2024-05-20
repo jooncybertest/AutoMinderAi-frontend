@@ -33,7 +33,6 @@ export const Navbar = () => {
       dropdownRef.current &&
       !dropdownRef.current.contains(event.target as Node)
     ) {
-      // Set dropdownVisible to false here if it were used
     }
   };
 
@@ -92,8 +91,12 @@ export const Navbar = () => {
                 </div>
               </DropdownTrigger>
               <DropdownMenu aria-label="User Actions">
-                <DropdownItem key="profile">Profile</DropdownItem>
-                <DropdownItem key="settings">Settings</DropdownItem>
+                <DropdownItem key="profile">
+                  <a href="/profile">Profile</a>
+                </DropdownItem>
+                <DropdownItem key="settings">
+                  <a href="/setting">Settings</a>
+                </DropdownItem>
                 <DropdownItem key="logout" onClick={() => logout()}>
                   Logout
                 </DropdownItem>

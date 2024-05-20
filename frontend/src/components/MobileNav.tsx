@@ -15,6 +15,8 @@ export const MobileNav = ({ mobileMenuOpen, setMobileMenuOpen }: Props) => {
     { name: "Get Your Car Info", href: "/get-your-car-info" },
     { name: "About Us", href: "/about" },
     { name: "Contact", href: "/contact" },
+    { name: "Profile", href: "/profile" },
+    { name: "Setting", href: "/setting" },
   ];
   const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
   return (

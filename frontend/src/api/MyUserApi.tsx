@@ -92,6 +92,7 @@ export const useUpdateMyUser = () => {
 
   const updateMyUserRequest = async (formData: updateMyUserRequest) => {
     const accessToken = await getAccessTokenSilently();
+    console.log('Updating user with data:', formData);
     const response = await fetch(`${API_BASE_URL}/api/my/user`, {
       method: "PUT",
       headers: {

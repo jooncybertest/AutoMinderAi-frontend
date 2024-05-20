@@ -15,6 +15,7 @@ import { AiDescription } from "./components/AiDescription";
 import AutoshopsNearbyPage from "./pages/AutoshopsNearbyPage";
 import SuccessPage from "./pages/SuccessPaymentPage";
 import CancelPage from "./pages/CancelPaymentPage";
+import { ProfilePage } from "./pages/ProfilePage";
 
 export const AppRoutes = () => {
   return (
@@ -58,6 +59,14 @@ export const AppRoutes = () => {
         element={
           <Layout>
             <AboutUs />
+          </Layout>
+        }
+      />
+      <Route
+        path="/profile"
+        element={
+          <Layout>
+            <ProfilePage />
           </Layout>
         }
       />

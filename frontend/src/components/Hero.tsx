@@ -78,7 +78,7 @@ export default function Hero() {
                   </div>
                 </DropdownTrigger>
                 <DropdownMenu aria-label="User Actions">
-                  <DropdownItem key="profile">Profile</DropdownItem>
+                  <DropdownItem key="profile"><link href="/profile">Profile</link></DropdownItem>
                   <DropdownItem key="settings">Settings</DropdownItem>
                   <DropdownItem key="logout" onClick={() => logout()}>
                     Logout

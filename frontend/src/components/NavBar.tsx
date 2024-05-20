@@ -98,7 +98,7 @@ export const Navbar = () => {
                 </div>
               </DropdownTrigger>
               <DropdownMenu aria-label="User Actions">
-                <DropdownItem key="profile" onClick={() => goToSettingPage()}>
+                <DropdownItem key="profile" onClick={() => goToProfilePage()}>
                   Profile
                 </DropdownItem>
                 <DropdownItem key="settings" onClick={() => goToSettingPage()}>

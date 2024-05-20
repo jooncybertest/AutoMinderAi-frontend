@@ -2,6 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Dialog, DialogPanel, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { getUserInitials } from "./Hero";
+import { useGetMyUser } from "../api/MyUserApi";
 
 type Props = {
   mobileMenuOpen: boolean;
@@ -9,6 +10,7 @@ type Props = {
 };
 
 export const MobileNav = ({ mobileMenuOpen, setMobileMenuOpen }: Props) => {
+  const { currentUser } = useGetMyUser();
   const navigation = [
     { name: "Home", href: "/" },
     { name: "Services", href: "/services" },
@@ -18,7 +20,7 @@ export const MobileNav = ({ mobileMenuOpen, setMobileMenuOpen }: Props) => {
     { name: "Profile", href: "/profile" },
     { name: "Setting", href: "/setting" },
   ];
-  const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
+  const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
 
   return (
     <Transition
@@ -68,10 +70,10 @@ export const MobileNav = ({ mobileMenuOpen, setMobileMenuOpen }: Props) => {
                 {isAuthenticated ? (
                   <div className="flex flex-col items-center space-y-2">
                     <div className="relative w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-lg font-semibold text-gray-800">
-                      {getUserInitials(user?.name)}
+                      {getUserInitials(currentUser?.name)}
                     </div>
                     <span className="text-sm font-semibold leading-6 text-gray-900">
-                      Welcome {user?.name}!
+                      Welcome {currentUser?.name}!
                     </span>
                     <span
                       className="text-sm font-semibold leading-6 text-gray-900 hover:text-gray-700 hover:underline cursor-pointer"

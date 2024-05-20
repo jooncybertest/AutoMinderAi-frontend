@@ -16,6 +16,7 @@ import AutoshopsNearbyPage from "./pages/AutoshopsNearbyPage";
 import SuccessPage from "./pages/SuccessPaymentPage";
 import CancelPage from "./pages/CancelPaymentPage";
 import { ProfilePage } from "./pages/ProfilePage";
+import { SettingPage } from "./pages/SettingPage";
 
 export const AppRoutes = () => {
   return (
@@ -67,6 +68,14 @@ export const AppRoutes = () => {
         element={
           <Layout>
             <ProfilePage />
+          </Layout>
+        }
+      />
+      <Route
+        path="/setting"
+        element={
+          <Layout>
+            <SettingPage />
           </Layout>
         }
       />

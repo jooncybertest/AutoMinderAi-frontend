@@ -1,7 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Dropdown,
   DropdownTrigger,
@@ -17,6 +17,7 @@ const getUserInitials = (name: string | undefined) => {
 };
 
 export const Navbar = () => {
+  const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const navigation = [
@@ -34,6 +35,12 @@ export const Navbar = () => {
       !dropdownRef.current.contains(event.target as Node)
     ) {
     }
+  };
+  const goToProfilePage = () => {
+    navigate("/profile");
+  };
+  const goToSettingPage = () => {
+    navigate("/setting");
   };
 
   useEffect(() => {
@@ -91,11 +98,11 @@ export const Navbar = () => {
                 </div>
               </DropdownTrigger>
               <DropdownMenu aria-label="User Actions">
-                <DropdownItem key="profile">
-                  <a href="/profile">Profile</a>
+                <DropdownItem key="profile" onClick={() => goToSettingPage()}>
+                  Profile
                 </DropdownItem>
-                <DropdownItem key="settings">
-                  <a href="/setting">Settings</a>
+                <DropdownItem key="settings" onClick={() => goToSettingPage()}>
+                  Settings
                 </DropdownItem>
                 <DropdownItem key="logout" onClick={() => logout()}>
                   Logout

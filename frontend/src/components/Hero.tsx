@@ -9,8 +9,7 @@ import {
   Spinner,
 } from "@nextui-org/react";
 import { MobileNav } from "./MobileNav";
-
-
+import { useNavigate } from "react-router-dom";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -27,12 +26,20 @@ export const getUserInitials = (name: string | undefined) => {
 };
 
 export default function Hero() {
+  const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
   const [loadingGetStarted, setLoadingGetStarted] = useState(false);
   const handleGetStarted = () => {
     setLoadingGetStarted(true);
   };
+  const goToProfilePage = () => {
+    navigate("/profile");
+  };
+  const goToSettingPage = () => {
+    navigate("/setting");
+  };
+
   return (
     <div className="relative bg-white">
       <header className="absolute inset-x-0 top-0 z-50">
@@ -78,8 +85,19 @@ export default function Hero() {
                   </div>
                 </DropdownTrigger>
                 <DropdownMenu aria-label="User Actions">
-                  <DropdownItem key="profile"><a href="/profile">Profile</a></DropdownItem>
-                  <DropdownItem key="settings"><a href="/setting">Settings</a></DropdownItem>
+                  <DropdownItem
+                    key="profile"
+                    textValue="Profile"
+                    onClick={() => goToProfilePage()}
+                  >
+                    Profile
+                  </DropdownItem>
+                  <DropdownItem
+                    key="settings"
+                    onClick={() => goToSettingPage()}
+                  >
+                    Settings
+                  </DropdownItem>
                   <DropdownItem key="logout" onClick={() => logout()}>
                     Logout
                   </DropdownItem>
@@ -135,7 +153,7 @@ export default function Hero() {
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               {loadingGetStarted ? (
-                <Spinner size="sm" /> 
+                <Spinner size="sm" />
               ) : (
                 <a
                   onClick={handleGetStarted}

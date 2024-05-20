@@ -19,6 +19,7 @@ export const MobileNav = ({ mobileMenuOpen, setMobileMenuOpen }: Props) => {
     { name: "Setting", href: "/setting" },
   ];
   const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
+
   return (
     <Transition
       show={mobileMenuOpen}

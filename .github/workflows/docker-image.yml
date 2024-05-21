@@ -27,7 +27,7 @@ jobs:
 
     - name: Build Docker images
       run: |
-        docker build ./frontend --file ./frontend/Dockerfile --tag ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-west-2.amazonaws.com/autominderai:frontend
+        docker build ./frontend --file ./frontend/Dockerfile --tag ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-2.amazonaws.com/autominderai:frontend
 
     - name: Push Docker images to Amazon ECR
       run: |

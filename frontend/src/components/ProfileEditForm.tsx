@@ -10,6 +10,7 @@ interface ProfileEditFormProps {
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleSubmit: (e: React.FormEvent) => void;
   handleEditClick: () => void;
+  handleFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const ProfileEditForm: React.FC<ProfileEditFormProps> = ({
@@ -17,6 +18,7 @@ export const ProfileEditForm: React.FC<ProfileEditFormProps> = ({
   handleChange,
   handleSubmit,
   handleEditClick,
+  handleFileChange,
 }) => {
   return (
     <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-sm">
@@ -81,6 +83,20 @@ export const ProfileEditForm: React.FC<ProfileEditFormProps> = ({
             id="country"
             value={formData.country}
             onChange={handleChange}
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+        </div>
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="file"
+          >
+            Profile Picture
+          </label>
+          <input
+            type="file"
+            id="file"
+            onChange={handleFileChange}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
         </div>

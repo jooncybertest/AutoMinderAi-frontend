@@ -22,7 +22,7 @@ export type VehicleData = {
   fuelTypePrimary: string;
   transmissionStyle: string;
   vinNumber: string;
-}
+};
 
 export type CreateMaintenancePrediction = {
   Vehicle_Model: string;
@@ -44,4 +44,10 @@ export type CreateMaintenancePrediction = {
   Tire_Condition: string;
   Brake_Condition: string;
   Battery_Status: string;
+};
+
+export type UserPhoto = {
+  _id: string;
+  imageName: string;
+  imageUrl: string;
 };

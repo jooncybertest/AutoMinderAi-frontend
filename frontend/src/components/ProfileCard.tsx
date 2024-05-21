@@ -9,13 +9,17 @@ interface ProfileCardProps {
   };
   currentUser: any;
   handleEditClick: () => void;
+  imageUrl: string | null;
 }
 
 export const ProfileCard: React.FC<ProfileCardProps> = ({
   formData,
   currentUser,
   handleEditClick,
+  imageUrl,
 }) => {
+  const defaultImageUrl = "https://via.placeholder.com/150"; 
+
   return (
     <>
       <div className="text-center mb-8">
@@ -26,7 +30,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
       </div>
       <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-sm mb-6">
         <img
-          src="https://via.placeholder.com/150"
+          src={imageUrl || defaultImageUrl}
           alt="Profile"
           className="w-32 h-32 rounded-full mx-auto mb-4"
         />

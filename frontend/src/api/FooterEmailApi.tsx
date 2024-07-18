@@ -1,8 +1,9 @@
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 // newsletter subscription
 export const handleEmailSubmit = async (email: string) => {
   try {
-    const response = await fetch("/api/send-email", {
+    const response = await fetch(`${API_BASE_URL}/api/send-email`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

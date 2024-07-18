@@ -1,6 +1,15 @@
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { useState } from "react";
+import { handleEmailSubmit } from "../api/FooterEmailApi";
 
 const Footer = () => {
+  const [email, setEmail] = useState("");
+
+  const handleSubmit = (event: { preventDefault: () => void; }) => {
+    event.preventDefault();
+    handleEmailSubmit(email).then(() => setEmail(""));
+  };
+
   return (
     <footer className="bg-gray-100 py-8 px-5 md:px-10">
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
@@ -47,11 +56,14 @@ const Footer = () => {
             Get the latest car maintenance tips, news, and updates delivered to
             your inbox.
           </p>
-          <form className="flex">
+          <form className="flex" onSubmit={handleSubmit}>
             <input
               type="email"
               placeholder="Enter your email"
               className="p-2 w-full border border-gray-300 rounded-l-lg"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
             />
             <button
               type="submit"

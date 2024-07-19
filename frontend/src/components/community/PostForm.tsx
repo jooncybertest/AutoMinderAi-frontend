@@ -15,7 +15,12 @@ const NewPostForm = () => {
       content,
     };
 
-    mutate(newPost);
+    mutate(newPost, {
+      onSuccess: () => {
+        // Refresh the page after successfully creating a post to see my post 
+        window.location.reload();
+      },
+    });
   };
 
   return (

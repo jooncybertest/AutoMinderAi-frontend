@@ -1,4 +1,3 @@
-import { User } from "../../types";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useMutation, useQuery } from "react-query";
 import { toast } from "sonner";
@@ -43,7 +42,6 @@ type CreateUserRequest = {
   auth0Id: string;
   email: string;
 };
-
 
 export const useCreateMyUser = () => {
   const { getAccessTokenSilently } = useAuth0();
@@ -92,7 +90,7 @@ export const useUpdateMyUser = () => {
 
   const updateMyUserRequest = async (formData: updateMyUserRequest) => {
     const accessToken = await getAccessTokenSilently();
-    console.log('Updating user with data:', formData);
+    console.log("Updating user with data:", formData);
     const response = await fetch(`${API_BASE_URL}/api/my/user`, {
       method: "PUT",
       headers: {
@@ -127,4 +125,30 @@ export const useUpdateMyUser = () => {
   }
 
   return { updateUser, isLoading };
+};
+
+interface User {
+  _id: string;
+  name: string;
+}
+
+export const useGetAllUsers = () => {
+  const getAllUserRequest = async (): Promise<User[]> => {
+    const response = await fetch(`${API_BASE_URL}/api/my/user/all`, {
+      method: "GET",
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch users");
+    }
+
+    return response.json();
+  };
+
+  const { data: allUsers, isLoading } = useQuery(
+    "fetchAllUsers",
+    getAllUserRequest
+  );
+
+  return { allUsers, isLoading };
 };

@@ -1,6 +1,7 @@
 import { useGetAllPosts } from "@/api/CommunityApi";
 import { Header } from "@/components/community/Header";
 import Sidebar from "@/components/community/Sidebar";
+import { Spinner } from "@/components/Spinner";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -27,7 +28,7 @@ const PostsPage = () => {
           .includes(normalizedSearchQuery)
     ) || [];
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Spinner/>;
   if (isError) return <p>Error loading posts...</p>;
 
   return (

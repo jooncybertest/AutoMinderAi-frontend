@@ -77,3 +77,24 @@ export const useGetAllPosts = () => {
 
   return useQuery("allPosts", getAllPosts);
 };
+
+export const useGetAllEvents = () => {
+  const getAllEvents = async () => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/events`, {
+        method: "GET",
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to get events: ${await response.text()}`);
+      }
+
+      return await response.json();
+    } catch (error: any) {
+      console.error("Error fetching events data", error.message);
+      throw new Error(error.message || "Something went wrong");
+    }
+  };
+
+  return useQuery("allEvents", getAllEvents);
+};

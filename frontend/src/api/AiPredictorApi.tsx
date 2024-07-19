@@ -1,5 +1,3 @@
-// add silly code for testing github ac 
-
 import { useMutation } from "react-query";
 import { CreateMaintenancePrediction } from "../../types";
 

@@ -67,7 +67,7 @@ const Footer = () => {
             />
             <button
               type="submit"
-              className="bg-purple-700 text-white px-4 rounded-r-lg"
+              className="bg-purple-700 text-white px-2 rounded-r-lg"
             >
               Subscribe
             </button>

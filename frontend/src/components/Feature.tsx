@@ -54,8 +54,15 @@ const features = [
   },
   {
     name: "Community Support",
-    description:
-      "Join a community of car owners and enthusiasts to share tips, get advice, and support each other in maintaining your vehicles.",
+    description: (
+      <>
+        <a href="/community" className="text-indigo-600 hover:text-indigo-900 pr-1">
+          Join a community
+        </a>
+        of car owners and enthusiasts to share tips, get advice, and support
+        each other in maintaining your vehicles.{" "}
+      </>
+    ),
     icon: UserGroupIcon,
   },
 ];

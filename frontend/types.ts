@@ -51,3 +51,8 @@ export type UserPhoto = {
   imageName: string;
   imageUrl: string;
 };
+
+export type CreateCommunityPost = {
+  title: string,
+  content: string
+}

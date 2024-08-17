@@ -4,10 +4,11 @@
 
 AutoMinderAI is a cutting-edge application designed to optimize data processing and predictive analytics using AI/ML models. This repository contains the frontend codebase built with modern web technologies, ensuring a responsive and user-friendly experience.
 
-## 🚀 Features-**Optimized Database Schema:** Enhances data processing efficiency by 30%.
-**AI/ML Integration:** Incorporates predictive analytics models to improve accuracy by 25%. <br>
-**Containerization:** Utilizes Docker for scalable deployment, reducing deployment time by 40%. <br>
-**Responsive Design:** Fully responsive UI, ensuring usability across devices. <br>
+## 🚀 Features
+-**Optimized Database Schema:** Enhances data processing efficiency by 30%. <br>
+-**AI/ML Integration:** Incorporates predictive analytics models to improve accuracy by 25%. <br>
+-**Containerization:** Utilizes Docker for scalable deployment, reducing deployment time by 40%. <br>
+-**Responsive Design:** Fully responsive UI, ensuring usability across devices. <br>
 
 ## 🛠️ Tech Stack-**Frontend:** React, TypeScript, Tailwind CSS
 -**State Management:** Redux

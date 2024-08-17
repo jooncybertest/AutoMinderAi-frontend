@@ -32,7 +32,8 @@ Ensure you have the following installed on your system:
 - npm (v6.x or higher)
 - Docker (optional, for containerization)
 
-### Installation1.**Clone the repository:**    
+### Installation
+1.**Clone the repository:**    
     ```bash
     git clone https://github.com/your-username/auto-minder-ai-frontend.git
     cd auto-minder-ai-frontend

@@ -38,14 +38,17 @@ Ensure you have the following installed on your system:
     git clone https://github.com/your-username/auto-minder-ai-frontend.git
     cd auto-minder-ai-frontend
     ```
+    <br>
 2.**Install dependencies:**    
     ```bash
     npm install
     ```
+    <br>
 3.**Set up environment variables:**    Create a `.env` file in the root directory and add the necessary environment variables:
     ```env
     REACT_APP_API_URL=http://your-api-url.com
     ```
+    <br>
 4.**Run the development server:**    
     ```bash
     npm start

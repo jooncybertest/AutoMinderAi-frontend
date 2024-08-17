@@ -10,10 +10,11 @@ AutoMinderAI is a cutting-edge application designed to optimize data processing 
 -**Containerization:** Utilizes Docker for scalable deployment, reducing deployment time by 40%. <br>
 -**Responsive Design:** Fully responsive UI, ensuring usability across devices. <br>
 
-## 🛠️ Tech Stack-**Frontend:** React, TypeScript, Tailwind CSS
--**State Management:** Redux
--**API Integration:** Axios
--**Deployment:** AWS ECS, Docker
+## 🛠️ Tech Stack
+-**Frontend:** React, TypeScript, Tailwind CSS <br>
+-**State Management:** Redux <br>
+-**API Integration:** Axios <br>
+-**Deployment:** AWS ECS, Docker <br>
 
 ## 🔗 Live Demo
 
@@ -31,18 +32,21 @@ Ensure you have the following installed on your system:
 - npm (v6.x or higher)
 - Docker (optional, for containerization)
 
-### Installation1.**Clone the repository:**    ```bash
+### Installation1.**Clone the repository:**    
+    ```bash
     git clone https://github.com/your-username/auto-minder-ai-frontend.git
     cd auto-minder-ai-frontend
     ```
-2.**Install dependencies:**    ```bash
+2.**Install dependencies:**    
+    ```bash
     npm install
     ```
 3.**Set up environment variables:**    Create a `.env` file in the root directory and add the necessary environment variables:
     ```env
     REACT_APP_API_URL=http://your-api-url.com
     ```
-4.**Run the development server:**    ```bash
+4.**Run the development server:**    
+    ```bash
     npm start
     ```
     The app should now be running on [http://localhost:3000](http://localhost:3000).
@@ -50,13 +54,16 @@ Ensure you have the following installed on your system:
 
 If you prefer running the application inside a Docker container:
 
-1.**Build the Docker image:**    ```bash
+1.**Build the Docker image:**    
+    ```bash
     docker build -t autominderai-frontend .
     ```
-2.**Run the Docker container:**    ```bash
+2.**Run the Docker container:**    
+    ```bash
     docker run -p 3000:3000 autominderai-frontend
     ```
-## 📁 Project Structure```bash
+## 📁 Project Structure
+```bash
 src/
 ├── assets/         # Static assets like images, icons, etc.
 ├── components/     # Reusable React components

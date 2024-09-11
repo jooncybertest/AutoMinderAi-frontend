@@ -44,7 +44,7 @@ Ensure you have the following installed on your system:
     npm install
     ```
     <br>
-3.**Set up environment variables:**    Create a `.env` file in the root directory and add the necessary environment variables:
+3.**Set up environment variables:**    Create a `.env` file in the root directory:
     ```env
     REACT_APP_API_URL=http://your-api-url.com
     ```

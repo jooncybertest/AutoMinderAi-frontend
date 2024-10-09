@@ -1,4 +1,4 @@
-// api/CommunityApi.ts
+
 import { useMutation, useQuery } from "react-query";
 import { useAuth0 } from "@auth0/auth0-react";
 import { CreateCommunityPost } from "types";
